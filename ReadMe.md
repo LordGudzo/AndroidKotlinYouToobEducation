@@ -1,0 +1,70 @@
+# Currency Converter App
+
+This is a simple currency converter app made with Jetpack Compose.
+The app converts UAH (Ukrainian hryvnia) to USD and EUR.
+This project was created for practice and learning Android development with Compose
+It is based on lessons 6.1–6.17: lessons 6.1-6.17 https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
+
+**Useful Keyboard Shortcuts (Android Studio):**
+- Ctrl + Alt + T — Surround with (for example: fold comments)
+- Ctrl + Alt + L — Reformat code
+- Ctrl + Alt + O — Optimize / check imports
+These shortcuts help to write cleaner and faster code.
+
+**Interesting Code Parts**
+1. Toast Message Example
+Toast is a small message that appears on the screen for a short time.
+
+val context = LocalContext.current
+
+   `Button(onClick = {
+      Toast.makeText(
+      context,
+      "You click calculate button",
+      Toast.LENGTH_LONG   
+   ).show()
+   }) {
+   Text("Calculate")
+   }`
+
+Explanation:
+LocalContext.current gives access to Android context
+Toast.makeText() creates a message
+Toast.LENGTH_LONG controls how long the message is visible long = 4 seconds, short = 2 seconds
+.show() displays the message
+
+
+2. Different between
+   2.1.` var rate = remember { mutableDoubleStateOf(1.0) }`
+   - rate is a State object;
+   - To get value → rate.value;
+   - To change value → rate.value = 2.0;
+   - UI will update automatically after change;
+   - rate.value = 0.023
+
+   2.2.`var rate by remember { mutableDoubleStateOf(1.0) }
+      - rate is a Double value;
+      - No need to use .value;
+      - Cleaner and easier to read;
+      - UI still updates automatically;
+      - rate = 0.023
+   
+   2.3.`var rate = 1.0`
+      - This is just a normal variable;
+      - **Compose does NOT track this variable;
+      - UI will NOT update when value changes;**
+      - Value will reset after recomposition;
+
+3.  Drop down list
+
+`    DropdownMenu(
+       expanded = isDropDownOpen,
+       onDismissRequest = { isDropDownOpen = false },  //if click in another place (not drop down place)
+   ){
+       DropdownMenuItem(
+       text = { Text("to USD: 0.023") },
+       onClick = {
+       isDropDownOpen = false
+   })`
+  
+
