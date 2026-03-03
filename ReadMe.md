@@ -5,6 +5,12 @@ The app converts UAH (Ukrainian hryvnia) to USD and EUR.
 This project was created for practice and learning Android development with Compose
 It is based on lessons 6.1–6.17: lessons 6.1-6.17 https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
 
+# Notes App
+This is a simple note app made with Jetpack Compose.
+In this app realised adds, delete and edit note.
+This project was created for practice and learning Android development with Compose
+It is based on lessons 7.1–7.14: lessons 6.1-6.17 https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
+
 **Useful Keyboard Shortcuts (Android Studio):**
 - Ctrl + Alt + T — Surround with (for example: fold comments)
 - Ctrl + Alt + L — Reformat code
@@ -66,5 +72,35 @@ Toast.LENGTH_LONG controls how long the message is visible long = 4 seconds, sho
        onClick = {
        isDropDownOpen = false
    })`
-  
+
+4.    LazyColumn and closures
+      `LazyColumn{
+            items(notes) { note ->
+                if (note.isEdition) {
+                    NoteEditView(
+                        item = note,
+                        onEditComplete = { editName,
+                                           editDescription ->
+                            notes = notes.map { it.copy(isEdition = false) }
+                            val editNote = notes.find { it.id == note.id }
+                            editNote?.let {
+                                it.title = editName
+                                it.description = editDescription
+                            }
+                        }
+                    )} else {
+                    NoteView(
+                        item = note,
+                        onEditClick = {
+                            notes = notes.map {
+                                it.copy(isEdition = (it.id == note.id))
+                            }
+                        },
+                        onDeleteClick = {
+                            notes = notes - note
+                        }
+                    )
+                }}}`
+`      fun NoteView(item: OneNote, onEditClick: () -> Unit, onDeleteClick: () -> Unit)  
+       fun NoteEditView(item: OneNote, onEditComplete: (String, String) -> Unit)`
 
