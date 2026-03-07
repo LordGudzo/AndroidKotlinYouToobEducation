@@ -9,7 +9,19 @@ It is based on lessons 6.1–6.17: lessons 6.1-6.17 https://www.youtube.com/watc
 This is a simple note app made with Jetpack Compose.
 In this app realised adds, delete and edit note.
 This project was created for practice and learning Android development with Compose
-It is based on lessons 7.1–7.14: lessons 6.1-6.17 https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
+It is based on lessons 7.1–7.14: https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
+
+# MyClicker App
+This is a simple clicker app made with Jetpack Compose.
+Here I learned the basic of ViewModel() that let me store data after rotation of the screen and 
+also I acquainted MVMV architecture.
+It is based on lessons 8.4 - 8.8 https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
+
+# MyCocktailsApp
+This is a simple clicker app made with Jetpack Compose.
+Here I learned the works with retrofit, converter.gson and coil for image.
+It is based on lessons 9.1 - 9.12 https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
+Here I used free API https://www.thecocktaildb.com/
 
 **Useful Keyboard Shortcuts (Android Studio):**
 - Ctrl + Alt + T — Surround with (for example: fold comments)
