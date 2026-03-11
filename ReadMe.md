@@ -20,8 +20,18 @@ It is based on lessons 8.4 - 8.8 https://www.youtube.com/watch?v=vGx3GUEe7zU&lis
 # MyCocktailsApp
 This is a simple clicker app made with Jetpack Compose.
 Here I learned the works with retrofit, converter.gson and coil for image.
-It is based on lessons 9.1 - 9.12 https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
+After TestNavigationApp I added here Navigation but I cann't adds Parcerize from kotlinx after 4 hours working with GPT,
+so I wrote Parcelable methods without @Parcelize
+It is based on lessons 9.1 - 10.11 https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
 Here I used free API https://www.thecocktaildb.com/
+
+# TestNavigationApp
+This is a simple clicker app made with Jetpack Compose.
+Here I learned the works with implementation(libs.androidx.navigation.compose), creates more than one Screen,
+transition between screens and data transfer (String).
+
+It is based on lessons 10.1 - 10.6 https://www.youtube.com/watch?v=vGx3GUEe7zU&list=PLV_vplloSltHSWsenFekvvAvhK3xM7X6Q&index=76
+
 
 **Useful Keyboard Shortcuts (Android Studio):**
 - Ctrl + Alt + T — Surround with (for example: fold comments)
@@ -116,3 +126,15 @@ Toast.LENGTH_LONG controls how long the message is visible long = 4 seconds, sho
 `      fun NoteView(item: OneNote, onEditClick: () -> Unit, onDeleteClick: () -> Unit)  
        fun NoteEditView(item: OneNote, onEditComplete: (String, String) -> Unit)`
 
+5. `NavHost(navController = navController, startDestination = "parentScreen") {
+       composable("parentScreen") {
+           ParentScreen { text ->
+           navController.navigate("childScreen/$text")
+           }
+       } 
+       composable("childScreen/{text}") {
+           val text = it.arguments?.getString("text") ?: ""
+           ChildScreen(text) { navController.navigate("parentScreen") }
+       }
+   }`
+6. MyCoctailsApp/app/src/main/java/com/mycoctailsapp/CocktailApp.kt example of how transfer object (need : Parcelable in the data class with object)
