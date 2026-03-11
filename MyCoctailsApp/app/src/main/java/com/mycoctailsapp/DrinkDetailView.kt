@@ -34,7 +34,6 @@ fun DrinkDetailView(drink: Drink) {
             painter = rememberAsyncImagePainter(drink.strDrinkThumb),
             contentDescription = "Drinks image",
             modifier = Modifier
-                .fillMaxSize()
                 .aspectRatio(1f)
         )
         Spacer(modifier = Modifier.padding(8.dp))
