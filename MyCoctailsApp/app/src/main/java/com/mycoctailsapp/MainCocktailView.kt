@@ -2,6 +2,7 @@ package com.mycoctailsapp
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -12,21 +13,20 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberAsyncImagePainter
 
 @Composable
-fun MainCocktailView(modifier: Modifier = Modifier) {
-    val cocktailViewModel: MainViewModel = viewModel()
-    val viewState by cocktailViewModel.drinkState
-
+fun MainCocktailView(
+    modifier: Modifier = Modifier,
+    viewState: MainViewModel.CocktailState,
+    navigateToDrinkDetailView: (Drink) -> Unit
+) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -38,29 +38,33 @@ fun MainCocktailView(modifier: Modifier = Modifier) {
             }
 
             else -> {
-                DrinksView(viewState.list)
+                DrinksView(viewState.list, navigateToDrinkDetailView)
             }
         }
     }
 }
 
 @Composable
-fun DrinksView(drinks: List<Drink>) {
+fun DrinksView(drinks: List<Drink>, navigateToDrinkDetailView: (Drink) -> Unit) {
     LazyVerticalGrid(
         GridCells.Fixed(2),
         modifier = Modifier
             .fillMaxSize()
     ) {
         items(drinks) { drink ->
-            OneDrink(drink)
+            OneDrink(drink, navigateToDrinkDetailView)
         }
     }
 }
 
 @Composable
-fun OneDrink(drink: Drink) {
+fun OneDrink(
+    drink: Drink,
+    navigateToDrinkDetailView: (Drink) -> Unit
+) {
     Column(
         modifier = Modifier
+            .clickable { navigateToDrinkDetailView(drink) }
             .fillMaxSize()
             .padding(4.dp),
         horizontalAlignment = Alignment.CenterHorizontally,

@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.compose.rememberNavController
 import com.mycoctailsapp.ui.theme.MyCoctailsAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -17,6 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
+            val navController = rememberNavController()
             MyCoctailsAppTheme {
                 Surface(
                     modifier = Modifier
@@ -24,7 +26,7 @@ class MainActivity : ComponentActivity() {
                         .padding(16.dp),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainCocktailView()
+                    CocktailApp(navController)
                 }
             }
         }
